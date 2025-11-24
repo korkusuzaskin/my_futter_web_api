@@ -1,12 +1,11 @@
-# GitHub Pages için Flutter Web Uygulamasını Otomatik Dağıtma
 name: Build and Deploy Flutter Web
 
 on:
   push:
-    # main dalına yapılan her gönderimde (push) bu işi çalıştır
+   
     branches:
       - main
-  # GitHub Pages sekmesinden manuel olarak çalıştırma izni verir
+  
   workflow_dispatch:
 
 # Gerekli izinler
@@ -17,8 +16,10 @@ permissions:
 
 jobs:
   build_and_deploy:
+  
     environment: # <-- BU BÖLÜM EKLENMELİ
       name: github-pages
+      
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
