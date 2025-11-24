@@ -1,0 +1,13 @@
+image: ghcr.io/cirruslabs/flutter:stable
+
+pages:
+  stage: deploy
+  script:
+    - flutter config --enable-web
+    - flutter build web --release
+    - cp -r build/web public
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
