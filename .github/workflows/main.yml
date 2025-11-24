@@ -26,7 +26,7 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.0' # Kullandığınız Flutter versiyonunu buraya yazabilirsiniz.
+          flutter-version: '3.38.3' # Kullandığınız Flutter versiyonunu buraya yazabilirsiniz.
 
       # Flutter Web için Derleme (Build)
       - name: Build Web App
