@@ -36,6 +36,10 @@ migrate_working_dir/
 # Symbolication related
 app.*.symbols
 
+# Yalnızca Android derleme çıktılarını hariç tut (Bu, web derlemesini etkilemez)
+/build/app/
+/build/host/
+
 # Obfuscation related
 app.*.map.json
 
