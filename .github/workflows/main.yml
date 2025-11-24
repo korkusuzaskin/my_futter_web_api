@@ -1,0 +1,46 @@
+# GitHub Pages için Flutter Web Uygulamasını Otomatik Dağıtma
+name: Build and Deploy Flutter Web
+
+on:
+  push:
+    # main dalına yapılan her gönderimde (push) bu işi çalıştır
+    branches:
+      - main
+  # GitHub Pages sekmesinden manuel olarak çalıştırma izni verir
+  workflow_dispatch:
+
+# Gerekli izinler
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Flutter kurulumu
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.19.0' # Kullandığınız Flutter versiyonunu buraya yazabilirsiniz.
+
+      # Flutter Web için Derleme (Build)
+      - name: Build Web App
+        run: |
+          flutter config --enable-web
+          flutter build web --release
+
+      # Derlenmiş dosyaları (build/web) GitHub Pages'a yükleme
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'build/web' # Yükleyeceğimiz klasör: build/web
+
+      # GitHub Pages servisine dağıtma emri verme
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
